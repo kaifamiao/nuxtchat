@@ -22,7 +22,10 @@
       "Bash(pkill *)",
       "Bash(node *)",
       "Bash(cd *)",
-      "Bash(head *)"
+      "Bash(head *)",
+      "Bash(grep *)",
+      "Bash(tr *)",
+      "Bash(wc *)"
     ]
   },
   "$version": 3

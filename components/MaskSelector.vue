@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 border-b border-border">
+  <div class="p-4 border-t border-border">
     <Button @click="showMasks = true" variant="secondary" className="w-full" :icon="IconBoxes">
       选择提示词模板
     </Button>

@@ -1,17 +1,18 @@
 <template>
   <button
     :class="[
-      'inline-flex items-center justify-center gap-2 font-medium transition-colors rounded-lg',
-      variant === 'primary' && 'bg-primary text-primary-foreground hover:bg-primary/90',
+      'inline-flex items-center justify-center gap-2 font-semibold transition-all rounded-lg shadow-sm',
+      variant === 'primary' && 'bg-primary text-white hover:bg-primary/90 hover:shadow-md',
       variant === 'secondary' && 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       variant === 'ghost' && 'hover:bg-accent hover:text-accent-foreground',
-      variant === 'outline' && 'border border-input hover:bg-accent hover:text-accent-foreground',
-      variant === 'destructive' && 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-      size === 'sm' && 'px-3 py-1.5 text-sm',
-      size === 'md' && 'px-4 py-2 text-sm',
+      variant === 'outline' && 'border-2 border-input hover:bg-accent hover:text-accent-foreground',
+      variant === 'destructive' && 'bg-destructive text-white hover:bg-destructive/90',
+      size === 'sm' && 'px-4 py-2 text-sm',
+      size === 'md' && 'px-5 py-2.5 text-base',
       size === 'lg' && 'px-6 py-3 text-base',
       size === 'icon' && 'p-2',
-      disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
+      disabled && variant !== 'primary' && 'opacity-50 cursor-not-allowed',
+      disabled && variant === 'primary' && 'opacity-70 cursor-not-allowed',
       className,
     ]"
     :disabled="disabled"

@@ -187,45 +187,45 @@
     </div>
 
     <!-- 输入区域 -->
-    <div class="flex-shrink-0 border-t border-border">
+    <div class="flex-shrink-0 bg-background border-t border-border">
       <!-- 插件管理器 -->
       <PluginManager />
       <!-- 提示词模板 -->
       <MaskSelector />
       <div class="p-4">
         <div class="max-w-3xl mx-auto">
-          <div class="relative">
+          <div class="flex items-end gap-2">
             <textarea
               ref="inputRef"
               v-model="inputMessage"
               :placeholder="isGenerating ? 'AI 正在回复...' : '输入消息...'"
               :disabled="isGenerating"
-              :rows="textareaRows"
-              class="w-full bg-card border border-border rounded-2xl px-4 py-3 pr-24 resize-none focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all scrollbar-thin"
+              rows="1"
+              class="flex-1 bg-card border border-border rounded-2xl px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all scrollbar-thin min-h-[52px] max-h-[200px]"
               @keydown.enter.exact.prevent="handleEnterKey"
               @input="adjustTextareaHeight"
             />
-            <div class="absolute right-2 bottom-2 flex items-center gap-1">
-              <Button
-                v-if="isGenerating"
-                variant="secondary"
-                size="sm"
-                @click="stopGenerating"
-                :icon="IconSquare"
-              >
-                停止
-              </Button>
-              <Button
-                v-else
-                variant="primary"
-                size="sm"
-                @click="sendMessage"
-                :disabled="!inputMessage.trim()"
-                :icon="IconSend"
-              >
-                发送
-              </Button>
-            </div>
+            <Button
+              v-if="isGenerating"
+              variant="secondary"
+              size="md"
+              @click="stopGenerating"
+              :icon="IconSquare"
+              className="flex-shrink-0"
+            >
+              停止
+            </Button>
+            <Button
+              v-else
+              variant="primary"
+              size="md"
+              @click="sendMessage"
+              :disabled="!inputMessage.trim()"
+              :icon="IconSend"
+              className="flex-shrink-0"
+            >
+              发送
+            </Button>
           </div>
           <div class="text-xs text-muted-foreground mt-2 text-center">
             按 Enter 发送，Shift + Enter 换行
@@ -260,7 +260,6 @@ const { sidebarOpen, currentChat, selectedModel, enabledModels, isGenerating } =
 const messagesContainer = ref<HTMLElement | null>(null)
 const inputRef = ref<HTMLTextAreaElement | null>(null)
 const inputMessage = ref('')
-const textareaRows = ref(1)
 const showModelDropdown = ref(false)
 
 const suggestions = [
@@ -285,9 +284,9 @@ function adjustTextareaHeight() {
   if (!textarea) return
 
   textarea.style.height = 'auto'
-  const newHeight = Math.min(textarea.scrollHeight, 200)
+  const scrollHeight = textarea.scrollHeight
+  const newHeight = Math.min(scrollHeight, 200)
   textarea.style.height = `${newHeight}px`
-  textareaRows.value = Math.ceil(newHeight / 24)
 }
 
 function handleEnterKey(event: KeyboardEvent) {
@@ -299,7 +298,7 @@ function handleEnterKey(event: KeyboardEvent) {
 }
 
 function sendMessage() {
-  const content = inputMessage.trim()
+  const content = inputMessage.value.trim()
   if (!content || isGenerating.value) return
 
   if (!currentChat.value) {
