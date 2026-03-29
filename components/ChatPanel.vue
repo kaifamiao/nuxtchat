@@ -467,11 +467,11 @@ function formatTime(timestamp: number) {
 }
 
 // 点击外部关闭模型选择下拉
+const dropdownRef = ref(null)
 onClickOutside(
-  ref(null),
+  dropdownRef,
   () => {
     showModelDropdown.value = false
-  },
-  { ignore: [] }
+  }
 )
 </script>

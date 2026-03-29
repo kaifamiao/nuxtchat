@@ -7,13 +7,12 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
-    'pinia/nuxt',
-    '~/modules/lucide-icons',
+    '@pinia/nuxt',
   ],
 
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
-    configPath: 'tailwind.config.js',
+    configPath: 'tailwind.config.mjs',
     exposeConfig: false,
     viewer: true,
   },
@@ -28,15 +27,7 @@ export default defineNuxtConfig({
 
   i18n: {
     vueI18n: '~/i18n.config.ts',
-    locales: [
-      { code: 'zh', iso: 'zh-CN', name: '简体中文', file: 'zh-CN.ts' },
-      { code: 'en', iso: 'en-US', name: 'English', file: 'en-US.ts' },
-      { code: 'ja', iso: 'ja-JP', name: '日本語', file: 'ja-JP.ts' },
-      { code: 'fr', iso: 'fr-FR', name: 'Français', file: 'fr-FR.ts' },
-    ],
     defaultLocale: 'zh',
-    lazy: true,
-    langDir: 'locales/',
     strategy: 'no_prefix',
     detectBrowserLanguage: true,
   },

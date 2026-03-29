@@ -10,13 +10,14 @@
         'focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent',
         'transition-all placeholder:text-muted-foreground',
         icon && 'pl-10',
-        class,
+        className,
       ]"
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     />
-    <Icon
+    <component
+      :is="icon"
       v-if="icon"
-      :class="['absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground']"
+      class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
     />
   </div>
 </template>
@@ -30,7 +31,7 @@ defineProps<{
   placeholder?: string
   disabled?: boolean
   icon?: Component
-  class?: string
+  className?: string
 }>()
 
 defineEmits<{

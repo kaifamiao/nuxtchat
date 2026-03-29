@@ -27,47 +27,66 @@
 
 ## 快速开始
 
-### 安装依赖
+### 1. 安装依赖
 
 ```bash
-npm install
+bun install
 ```
 
-### 开发模式
+### 2. 配置环境变量
+
+复制 `.env.example` 到 `.env` 并填写你的 API 密钥：
 
 ```bash
-npm run dev
+cp .env.example .env
 ```
 
-### 构建
+编辑 `.env` 文件：
 
-```bash
-npm run build
+```env
+OPENAI_API_KEY=sk-your-api-key-here
 ```
 
-### 预览
+### 3. 开发模式
 
 ```bash
-npm run preview
+bun run dev
+```
+
+访问 http://localhost:3000
+
+### 4. 构建
+
+```bash
+bun run build
+```
+
+### 5. 预览
+
+```bash
+bun run preview
 ```
 
 ## 部署
 
 ### Vercel 部署
 
-1. 点击 Vercel 部署按钮
-2. 使用 GitHub 账号登录
-3. 配置环境变量：
-   - `OPENAI_API_KEY`: 你的 OpenAI API 密钥
-   - `CODE`: 页面访问密码（可选）
+1.  Fork 本项目到 GitHub
+2.  访问 [Vercel](https://vercel.com)
+3.  点击 "New Project" 导入你的仓库
+4.  在环境变量设置中添加：
+    - `OPENAI_API_KEY`: 你的 OpenAI API 密钥
+    - `CODE`: 页面访问密码（可选）
+5.  点击 "Deploy"
 
 ### Docker 部署
 
 ```bash
-# 拉取镜像
-docker pull yidadaa/chatgpt-next-web
+# 方法一：使用 docker-compose
+docker-compose up -d
 
-# 运行容器
+# 方法二：手动运行
+docker build -t nuxtchat .
 docker run -d \
   -p 3000:3000 \
   -e OPENAI_API_KEY=your_api_key \
@@ -75,26 +94,36 @@ docker run -d \
   nuxtchat
 ```
 
+使用 Bun 镜像：
+
+```bash
+docker run -d \
+  -p 3000:3000 \
+  -e OPENAI_API_KEY=your_api_key \
+  oven/bun bun run dev
+```
+
 ### 本地部署
 
 ```bash
 # 构建
-npm run build
+bun run build
 
 # 启动
-node .output/server/index.mjs
+bun run .output/server/index.mjs
 ```
 
 ## 环境变量
 
-| 变量名 | 说明 | 必填 |
-|--------|------|------|
-| `OPENAI_API_KEY` | OpenAI API 密钥 | 是 |
-| `CODE` | 页面访问密码 | 否 |
-| `BASE_URL` | OpenAI 代理地址 | 否 |
-| `HIDE_USER_API_KEY` | 禁止用户自行填入 API Key | 否 |
-| `CUSTOM_MODELS` | 自定义模型列表 | 否 |
-| `DEFAULT_MODEL` | 默认模型 | 否 |
+| 变量名 | 说明 | 必填 | 默认值 |
+|--------|------|------|--------|
+| `OPENAI_API_KEY` | OpenAI API 密钥 | 是 | - |
+| `CODE` | 页面访问密码 | 否 | - |
+| `BASE_URL` | OpenAI 代理地址 | 否 | https://api.openai.com/v1 |
+| `HIDE_USER_API_KEY` | 禁止用户自行填入 API Key | 否 | 0 |
+| `DISABLE_GPT4` | 禁用 GPT-4 | 否 | 0 |
+| `CUSTOM_MODELS` | 自定义模型列表 | 否 | - |
+| `DEFAULT_MODEL` | 默认模型 | 否 | gpt-4o |
 
 ## 支持的模型
 
@@ -124,19 +153,51 @@ node .output/server/index.mjs
 nuxtchat/
 ├── assets/          # 静态资源
 ├── components/      # Vue 组件
+│   ├── Button.vue       # 按钮组件
+│   ├── ChatPanel.vue    # 聊天主界面
+│   ├── Input.vue        # 输入框组件
+│   ├── MarkdownRenderer.vue # Markdown 渲染
+│   ├── MaskSelector.vue # 提示词模板选择器
+│   ├── Modal.vue        # 模态框
+│   ├── PluginManager.vue # 插件管理器
+│   ├── SettingsPanel.vue # 设置面板
+│   ├── Sidebar.vue      # 侧边栏
+│   └── ThemeToggle.vue  # 主题切换
 ├── composables/     # 组合式函数
+│   ├── useChatApi.ts    # Chat API
+│   └── usePlugins.ts    # 插件系统
 ├── layouts/         # 布局组件
 ├── locales/         # 国际化文件
 ├── modules/         # Nuxt 模块
 ├── pages/           # 页面组件
 ├── plugins/         # 插件
 ├── public/          # 公共资源
+├── server/          # 服务端 API
 ├── stores/          # Pinia 状态管理
 ├── types/           # TypeScript 类型
 ├── app.vue          # 应用入口
 ├── nuxt.config.ts   # Nuxt 配置
 └── tailwind.config.js # Tailwind 配置
 ```
+
+## 内置提示词模板
+
+- 🤖 AI 助手 - 通用 AI 助手
+- 🌐 翻译助手 - 专业翻译
+- 💻 编程助手 - 代码编写、调试
+- ✍️ 写作助手 - 文章写作、润色
+- 📚 教学助手 - 知识讲解
+- 📊 数据分析师 - 数据分析
+- 🎨 设计师 - 设计建议
+- 💼 顾问 - 商业咨询
+
+## 内置插件
+
+- 🧮 计算器 - 执行数学计算
+- 📅 日期时间 - 获取当前日期和时间
+- 🔍 网络搜索 - 使用搜索引擎查找信息
+- 💻 代码执行 - 执行简单的代码片段
+- 🌐 翻译 - 翻译文本到指定语言
 
 ## 许可证
 

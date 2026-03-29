@@ -14,7 +14,7 @@
             'relative bg-card border border-border rounded-xl shadow-2xl',
             'max-w-[90vw] w-full max-h-[90vh] overflow-hidden',
             'animate-in fade-in zoom-in duration-200',
-            class,
+            className,
           ]"
         >
           <!-- 头部 -->
@@ -63,7 +63,7 @@ import { X as IconX } from 'lucide-vue-next'
 defineProps<{
   modelValue: boolean
   title?: string
-  class?: string
+  className?: string
 }>()
 
 defineEmits<{

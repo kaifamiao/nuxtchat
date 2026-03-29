@@ -47,13 +47,9 @@
     --ring: 59 130 246;
   }
 
-  * {
-    @apply border-border;
-  }
-
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
   }
 }
 
@@ -100,92 +96,6 @@
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background: rgb(var(--muted-foreground) / 0.5);
   }
-}
-
-/* Markdown 样式 */
-.prose pre {
-  @apply bg-slate-900 dark:bg-slate-950 rounded-lg p-4 overflow-x-auto;
-}
-
-.prose code {
-  @apply bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-sm;
-}
-
-.prose pre code {
-  @apply bg-transparent p-0 text-sm;
-}
-
-.prose img {
-  @apply rounded-lg max-w-full;
-}
-
-.prose table {
-  @apply w-full border-collapse;
-}
-
-.prose th, .prose td {
-  @apply border border-border px-4 py-2;
-}
-
-.prose th {
-  @apply bg-muted font-medium;
-}
-
-/* 代码高亮主题 */
-.hljs {
-  @apply bg-slate-900 text-slate-100 rounded-lg p-4;
-}
-
-.hljs-comment, .hljs-quote {
-  @apply text-slate-500;
-}
-
-.hljs-keyword, .hljs-selector-tag, .hljs-subst {
-  @apply text-purple-400;
-}
-
-.hljs-number, .hljs-literal, .hljs-variable, .hljs-template-variable {
-  @apply text-orange-400;
-}
-
-.hljs-string, .hljs-doctag {
-  @apply text-green-400;
-}
-
-.hljs-title, .hljs-section, .hljs-selector-id {
-  @apply text-red-400;
-}
-
-.hljs-type, .hljs-class .hljs-title {
-  @apply text-yellow-400;
-}
-
-.hljs-attribute, .hljs-name, .hljs-tag {
-  @apply text-blue-400;
-}
-
-.hljs-regexp, .hljs-link {
-  @apply text-cyan-400;
-}
-
-.hljs-symbol, .hljs-bullet {
-  @apply text-pink-400;
-}
-
-.hljs-built_in, .hljs-builtin-name {
-  @apply text-indigo-400;
-}
-
-.hljs-meta {
-  @apply text-slate-400;
-}
-
-.hljs-deletion {
-  @apply bg-red-900/30;
-}
-
-.hljs-addition {
-  @apply bg-green-900/30;
 }
 
 /* 加载动画 */

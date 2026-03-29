@@ -9,7 +9,7 @@
     <div class="flex flex-col h-full" :class="sidebarOpen ? 'w-72' : 'w-0'">
       <!-- 头部：新建对话 -->
       <div class="p-4 border-b border-border">
-        <Button @click="createNewChat" variant="primary" class="w-full" :icon="IconPlus">
+        <Button @click="createNewChat" variant="primary" className="w-full" :icon="IconPlus">
           新建对话
         </Button>
       </div>

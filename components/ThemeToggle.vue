@@ -40,6 +40,7 @@
 
 <script setup lang="ts">
 import { Sun as IconSun, Moon as IconMoon, Monitor as IconMonitor, Globe as IconGlobe } from 'lucide-vue-next'
+import { onClickOutside } from '@vueuse/core'
 
 const colorMode = useColorMode()
 const { locale, setLocale } = useI18n()
@@ -79,11 +80,11 @@ function switchLanguage(lang: 'zh' | 'en' | 'ja' | 'fr') {
 }
 
 // 点击外部关闭下拉菜单
+const langDropdownRef = ref<HTMLElement | null>(null)
 onClickOutside(
-  ref(null),
+  langDropdownRef,
   () => {
     showLangDropdown.value = false
-  },
-  { ignore: [] }
+  }
 )
 </script>

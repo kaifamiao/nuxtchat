@@ -12,13 +12,13 @@
       size === 'lg' && 'px-6 py-3 text-base',
       size === 'icon' && 'p-2',
       disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
-      class,
+      className,
     ]"
     :disabled="disabled"
     @click="$emit('click', $event)"
   >
     <slot name="icon">
-      <Icon v-if="icon" :class="size === 'sm' ? 'w-4 h-4' : 'w-5 h-5'" />
+      <component :is="icon" v-if="icon" :class="size === 'sm' ? 'w-4 h-4' : 'w-5 h-5'" />
     </slot>
     <slot />
   </button>
@@ -32,7 +32,7 @@ defineProps<{
   size?: 'sm' | 'md' | 'lg' | 'icon'
   icon?: Component
   disabled?: boolean
-  class?: string
+  className?: string
 }>()
 
 defineEmits<{

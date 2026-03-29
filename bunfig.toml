@@ -1,0 +1,16 @@
+# Bun 配置文件
+# https://bun.sh/docs/project/toml
+
+[install]
+# 使用 npm 仓库
+registry = "https://registry.npmjs.org/"
+
+# 可选：使用国内镜像加速
+# registry = "https://registry.npmmirror.com/"
+
+# 自动保存锁文件
+save-exact = true
+
+[build]
+# 构建入口
+entry = "app.vue"

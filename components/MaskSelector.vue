@@ -1,6 +1,6 @@
 <template>
   <div class="p-4 border-b border-border">
-    <Button @click="showMasks = true" variant="secondary" class="w-full" :icon="IconBoxes">
+    <Button @click="showMasks = true" variant="secondary" className="w-full" :icon="IconBoxes">
       选择提示词模板
     </Button>
   </div>
@@ -51,7 +51,7 @@
         rows="3"
         class="w-full input-base resize-none"
       />
-      <Button @click="createCustomMask" variant="primary" class="mt-2 w-full" :icon="IconPlus">
+      <Button @click="createCustomMask" variant="primary" className="mt-2 w-full" :icon="IconPlus">
         创建模板
       </Button>
     </div>
