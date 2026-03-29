@@ -27,6 +27,11 @@
 
 ## 快速开始
 
+### 前置要求
+
+- [Bun](https://bun.sh/) >= 1.0 (推荐使用 Bun 获得最佳性能)
+- Node.js >= 18 (如果使用 npm/yarn/pnpm)
+
 ### 1. 安装依赖
 
 ```bash
@@ -64,7 +69,11 @@ bun run build
 ### 5. 预览
 
 ```bash
-bun run preview
+# 使用 Node.js 运行生产构建
+node .output/server/index.mjs
+
+# 或使用 Bun 运行
+bun run .output/server/index.mjs
 ```
 
 ## 部署

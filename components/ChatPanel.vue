@@ -252,6 +252,7 @@ import {
   Square as IconSquare,
   Check as IconCheck,
 } from 'lucide-vue-next'
+import { onClickOutside } from '@vueuse/core'
 
 const chatStore = useChatStore()
 const { sidebarOpen, currentChat, selectedModel, enabledModels, isGenerating } = storeToRefs(chatStore)
